@@ -1,0 +1,33 @@
+{namespace schmutt=Schmutt\Tablespan\ViewHelper}
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+
+	<f:if condition="{table}">
+		<table>
+			<f:for each="{table}" as="row" iteration="rowIterator">
+				<f:if condition="{rowIterator.isFirst}">
+                    <f:then>
+                        <thead>
+                            <tr>
+                                <f:format.raw><schmutt:tableColspan row="{row}" head="{rowIterator.isFirst}" delimiter=";;;" /></f:format.raw>
+                            </tr>
+                        </thead>
+                    </f:then>
+                    <f:else>
+                        <tbody>
+                            <f:if condition="{rowIterator.isEven}">
+                                <f:then><tr class="even"></f:then>
+                                <f:else><tr class="odd"></f:else>
+                            </f:if>
+                                <f:format.raw><schmutt:tableColspan row="{row}" head="{rowIterator.isFirst}" delimiter=";;;" /></f:format.raw>
+                            </tr>
+                        </tbody>
+                    </f:else>
+				</f:if>
+			</f:for>
+		</table>
+	</f:if>
+
+</f:section>
